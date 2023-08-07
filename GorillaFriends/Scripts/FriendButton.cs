@@ -70,11 +70,11 @@ namespace GorillaFriends.Scripts
         private void OnTriggerEnter(Collider collider)
         {
             GorillaTriggerColliderHandIndicator component = collider.GetComponent<GorillaTriggerColliderHandIndicator>();
-            ToggleFriendship();
             if (component != null)
             {
                 GorillaTagger.Instance.offlineVRRig.PlayHandTapLocal(67, component.isLeftHand, 0.05f);
                 GorillaTagger.Instance.StartVibration(component.isLeftHand, GorillaTagger.Instance.tapHapticStrength / 2f, GorillaTagger.Instance.tapHapticDuration);
+                ToggleFriendship();
             }
 
         }

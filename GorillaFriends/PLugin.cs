@@ -26,7 +26,6 @@ namespace GorillaFriends
         internal static List<string> p_listCurrentSessionFriends = new List<string>();
         internal static List<string> p_listCurrentSessionRecentlyChecked = new List<string>();
         internal static List<GorillaScoreBoard> p_listScoreboards = new List<GorillaScoreBoard>();
-        internal static void Log(string msg) => p_hInstance.Logger.LogMessage(msg);
         public static Color p_clrFriend { get; internal set; } = new Color(0.8f, 0.5f, 0.9f, 1.0f);
         internal static string s_clrFriend;
         public static Color p_clrVerified { get; internal set; } = new Color(0.5f, 1.0f, 0.5f, 1.0f);
