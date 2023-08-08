@@ -27,7 +27,7 @@ namespace GorillaFriends.Patches
 
             fb.parentLine = __instance;
             fb.offMaterial = delme.offMaterial;
-            fb.onMaterial = delme.onMaterial;
+            fb.onMaterial = new Material(delme.onMaterial);
             Component.Destroy(delme);
         }
     }

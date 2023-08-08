@@ -46,7 +46,7 @@ namespace GorillaFriends.Scripts
 
         void LateUpdate()
         {
-            if (Plugin.IsFriend(parentLine.linePlayer.UserId))
+            if (Plugin.p_listCurrentSessionFriends.Contains(parentLine.linePlayer.UserId))
             {
                 rend.material = onMaterial;
                 parentLine.playerVRRig.playerText.color = Plugin.p_clrFriend;
@@ -65,6 +65,11 @@ namespace GorillaFriends.Scripts
             onMaterial.color = Plugin.p_clrFriend;
             transform.GetChild(0).gameObject.SetActive(true);
             rend = gameObject.GetComponent<Renderer>();
+            if (Plugin.IsFriend(parentLine.linePlayer.UserId))
+            {
+                Plugin.p_listCurrentSessionFriends.Add(parentLine.linePlayer.UserId);
+                Plugin.p_hInstance.UpdateBoards();
+            }
             initialized = true;
         }
         private void OnTriggerEnter(Collider collider)
@@ -80,14 +85,14 @@ namespace GorillaFriends.Scripts
         }
         void ToggleFriendship()
         {
-            if (!Plugin.IsFriend(parentLine.linePlayer.UserId))
+            if (!Plugin.p_listCurrentSessionFriends.Contains(parentLine.linePlayer.UserId))
             {
                 PlayerPrefs.SetInt(parentLine.linePlayer.UserId + "_friend", 1);
                 Plugin.p_listCurrentSessionFriends.Add(parentLine.linePlayer.UserId);
                 Plugin.p_hInstance.UpdateBoards();
                 return;
             }
-            if (Plugin.IsFriend(parentLine.linePlayer.UserId))
+            if (Plugin.p_listCurrentSessionFriends.Contains(parentLine.linePlayer.UserId))
             {
                 PlayerPrefs.DeleteKey(parentLine.linePlayer.UserId + "_friend");
                 Plugin.p_listCurrentSessionFriends.Remove(parentLine.linePlayer.UserId);
